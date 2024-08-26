@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { passwordMatchSchema } from '../validation/passwordMatchSchema';
 import { emailSchema } from '../validation/emailSchema';
+import { registerUser } from './action';
 
 const formSchema = z.object({
     email: emailSchema,
@@ -25,7 +26,15 @@ export default function Register() {
         }
     });
 
-    const handleSubmit = async(data: z.infer<typeof formSchema>) => {}
+    const handleSubmit = async(data: z.infer<typeof formSchema>) => {
+        const response = await registerUser({
+            email: data.email,
+            password: data.password,
+            passwordConfirm: data.passwordConfirm
+        });
+
+        console.log(response);
+    }
 
     return (
         <main className="flex justify-center items-center min-h-screen">
