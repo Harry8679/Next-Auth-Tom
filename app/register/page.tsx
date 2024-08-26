@@ -7,15 +7,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { passwordSchema } from '../validation/passwordSchema';
-import { passwordConfirmSchema } from '../validation/passwordConfirmSchema';
+import { passwordMatchSchema } from '../validation/passwordMatchSchema';
 import { emailSchema } from '../validation/emailSchema';
 
 const formSchema = z.object({
     email: emailSchema,
-    password: passwordSchema,
-    passwordConfirm: passwordConfirmSchema,
-});
+}).and(passwordMatchSchema);
 
 
 export default function Register() {
