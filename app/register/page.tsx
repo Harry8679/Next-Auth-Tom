@@ -7,17 +7,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { passwordSchema } from '../validation/passwordSchema';
+import { passwordConfirmSchema } from '../validation/passwordConfirmSchema';
 
 const formSchema = z.object({
     email: z.string()
         .nonempty({ message: "L'email ne doit pas être vide." })
         .email({ message: "Veuillez entrer un email valide." }),
-    password: z.string()
-        .nonempty({ message: "Le mot de passe ne doit pas être vide." })
-        .min(5, { message: "Le mot de passe doit contenir au moins 5 caractères." }),
-    passwordConfirm: z.string()
-        .nonempty({ message: "La confirmation du mot de passe ne doit pas être vide." }),
-        // .min(5, { message: "La confirmation du mot de passe doit contenir au moins 5 caractères." }),
+    password: passwordSchema,
+    passwordConfirm: passwordConfirmSchema,
 });
 
 
